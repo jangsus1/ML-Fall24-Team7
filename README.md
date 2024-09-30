@@ -1,4 +1,4 @@
-# ML-Project-Fall24
+# ML-Fall24-Team7
 
 This is a simple machine learning prediction app built with Streamlit.
 
