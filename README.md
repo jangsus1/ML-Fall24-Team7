@@ -11,8 +11,7 @@ This project aims to classify a user's current activity (e.g., web browsing, cha
 ### 1. Introduction/Background
 
 - **Literature Review:** Relevant research on activity detection through non-invasive means such as mouse events.
-- **Dataset Description:** The dataset will contain mouse event data (e.g., clicks, x-y coordinates, movement speed, scrolling events).
-- **Dataset Link (if applicable):** N/A
+- **Dataset Description:** The dataset will contain mouse event data (e.g., clicks, x-y coordinates, movement speed, scrolling events) in a time-series of 0.1sec interval.
 
 ### 2. Problem Definition
 
@@ -41,7 +40,7 @@ This project aims to classify a user's current activity (e.g., web browsing, cha
 
 ### 5. References
 
-- Research papers on mouse-event analysis, deep learning for time-series data, and data augmentation techniques will be cited in IEEE format.
+- TODO
 
 ---
 
@@ -49,7 +48,7 @@ This project aims to classify a user's current activity (e.g., web browsing, cha
 
 Below is the Gantt chart outlining each group member’s responsibilities for the project.
 
-![Gantt Chart](path-to-gantt-chart)
+![Gantt Chart](https://docs.google.com/spreadsheets/d/14TtwuTkYRx8cqvmaVrm9Yi3lG_yQL1HBeeJYwnyOWzk/edit?usp=sharing)
 
 ---
 
@@ -57,11 +56,14 @@ Below is the Gantt chart outlining each group member’s responsibilities for th
 
 Each group member's specific contributions to the project proposal are outlined in the table below.
 
-| Name       | Proposal Contributions          |
-|------------|----------------------------------|
-| Member1    | Dataset preparation, Feature engineering |
-| Member2    | Model selection, Training |
-| ...        | ...                              |
+| Name           | Proposal Contributions                                 |
+|----------------|--------------------------------------------------------|
+| Ji Min Park    | Dataset preparation, Data preprocessing methods (e.g., sliding window technique) |
+| Hyunju Ji      | Model selection (Boosting, LSTM, TCN), Designing experiments, Initial model training |
+| Woohyun Noh    | Literature review on non-invasive user activity detection, Documentation of results and discussions |
+| Jungwoo Park   | Feature engineering (click patterns, scroll patterns, idle times), Data augmentation |
+| Minsuk Chang   | Evaluation metrics (accuracy, precision, recall), Writing report and final presentation |
+
 
 ---
 
