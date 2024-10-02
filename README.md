@@ -52,7 +52,7 @@ We aim to collect 5 to 10 min action recordings from 5 participants. The dataset
 
 Below is the Gantt chart outlining each group member’s responsibilities for the project.
 
-![Gantt Chart](https://docs.google.com/spreadsheets/d/14TtwuTkYRx8cqvmaVrm9Yi3lG_yQL1HBeeJYwnyOWzk/edit?usp=sharing)
+[Gantt Chart](https://docs.google.com/spreadsheets/d/14TtwuTkYRx8cqvmaVrm9Yi3lG_yQL1HBeeJYwnyOWzk/edit?usp=sharing)
 
 ---
 
