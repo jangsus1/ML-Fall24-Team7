@@ -37,9 +37,9 @@ We aim to collect 5 to 10 minutes of action recordings from 5 participants. The 
    - Temporal Convolutional Networks (TCNs)
 2. **Window-Based Algorithms:**
    - Boosting or tree-based algorithms on time-series windows
-3. **Time Series Analysis Algorithms:**
-   - ARIMA
-   - Exponential Smoothing (ETS)
+3. **Unsupervised Approach:**
+   - Clustering after embedding extraction with some time-series extraction model.
+   - Clustering with pure mouse dynamics-based features.
 
 ### Relevant Courses and Methods
 
@@ -60,6 +60,8 @@ We aim to collect 5 to 10 minutes of action recordings from 5 participants. The 
 Below is the Gantt chart outlining each group member’s responsibilities for the project.
 
 [Gantt Chart](https://docs.google.com/spreadsheets/d/14TtwuTkYRx8cqvmaVrm9Yi3lG_yQL1HBeeJYwnyOWzk/edit?usp=sharing)
+
+![Gantt Chart](gantt.png)
 
 ## Team Contributions
 
