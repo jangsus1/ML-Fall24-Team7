@@ -1,8 +1,6 @@
 import streamlit as st
 import pandas as pd
 import pickle
-from utils.preprocessing import preprocess_data
-from utils.predictions import make_prediction
 
 # Load pre-trained model
 ## TODO: Update model path

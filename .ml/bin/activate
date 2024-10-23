@@ -35,7 +35,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/jangsus1/Research/ML-Project-Fall24/.ml"
+VIRTUAL_ENV="/Users/jangsus1/Homeworks/ML-Fall24-Team7/.ml"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
