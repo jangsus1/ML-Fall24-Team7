@@ -37,7 +37,7 @@ We aim to collect 5 to 10 minutes of action recordings from 5 participants. The 
 
 
 
-### Model Selection
+### ML Algorithms/Models Implemented
 
 1. **Time-Series Classification Models:**
    - Long Short-Term Memory (LSTM)
@@ -75,16 +75,21 @@ Below is the Gantt chart outlining each group member’s responsibilities for th
 
 Each group member's specific contributions to the project proposal are outlined in the table below.
 
-| Name             | Proposal Contributions                                                                                  |
-|------------------|---------------------------------------------------------------------------------------------------------|
-| **Ji Min Park**  | Dataset preparation, data preprocessing methods (e.g., sliding window technique)                        |
-| **Hyunju Ji**    | Model selection (Boosting, LSTM, TCN), designing experiments, initial model training                    |
-| **Woohyun Noh**  | Literature review on non-invasive user activity detection, documentation of results and discussions     |
-| **Jungwoo Park** | Feature engineering (click patterns, scroll patterns, idle times), data augmentation                     |
-| **Minsuk Chang** | Evaluation metrics (accuracy, precision, recall), writing report and final presentation                  |
+| Name             | Proposal Contributions                                                                                                                 |
+|------------------|----------------------------------------------------------------------------------------------------------------------------------------|
+| **Ji Min Park**  | Set up evaluation metrics (accuracy, F1-score), visualizations, and analysis of model performance and feature importance.              |
+| **Hyunju Ji**    | Implemented feature engineering, including velocity, acceleration, scroll patterns, and other mouse dynamics features.                 |
+| **Woohyun Noh**  | Conducted literature review and contributed to data processing and feature engineering, focusing on feature extraction and integration.|
+| **Jungwoo Park** | Implemented data preprocessing methods(Oversampling, PCA, t-SNE).                                                                      |
+| **Minsuk Chang** | Developed and trained machine learning models (e.g., LightGBM, K-means), and experimented with different model configurations.         |
 
 ## References
 
 1. E. Kuric, P. Demcak, M. Krajcovic, and P. Nemcek, “Is mouse dynamics information credible for user behavior research? An empirical investigation,” *Computer Standards & Interfaces*, vol. 90, p. 103849, 2024.
 2. E. Y. Fu et al., “Your mouse reveals your next activity: towards predicting user intention from mouse interaction,” in *2017 IEEE 41st Annual Computer Software and Applications Conference (COMPSAC)*, vol. 1, pp. 869–874, 2017.
 3. J. J. Matthiesen and U. Brefeld, “Assessing user behavior by mouse movements,” in *HCI International 2020-Posters*, pp. 68–75, 2020.
+
+
+Implemented data preprocessing methods, including coordinate regularization, time slot formation, and dataset formation.
+Conducted literature review and contributed to data processing and feature engineering, focusing on feature extraction and integration.
+
