@@ -24,18 +24,18 @@ Previous research has attempted to identify individuals based on their mouse usa
 
 We aim to collect 5 to 10 minutes of action recordings from 5 participants. The dataset will be split into frames and recorded every 0.1 seconds with corresponding mouse events. For better convergence and higher performance of our model, we will use MacBook Pro/Air for data collection, which has a uniform device (Trackpad) that records the mouse events.
 
-### Data Preprocessing
+### Data Preprocessing Method Implemented
+
+- **Feature Engineering:** Extracting additional insights like scroll patterns, click patterns, idle times, or mouse velocity.
+
+**Mouse Movement-Inferred Feature Overview:**
+![Feature Overview](feature_processing.png)
 
 - **Coordinate Regularization:** Adjusting the x, y coordinates based on individual screen sizes.
 - **Time Slot Formation:** Segmenting continuous event streams into fixed timeslots (about 0.1 sec) for a more structured time series.
 - **Feature Engineering:** Extracting additional insights like scroll patterns, click patterns, idle times, or mouse velocity.
 
-### Data Preprocessing Method Implemented
 
-**Mouse Movement-Inferred Feature Overview:**
-![Feature Overview](feature_processing.png)
-
-Based on the above, we implemented a data preprocessing approach to extract various characteristics of mouse movement data. In the data preprocessing process, we extracted stimulus interaction characteristics, including temporal and spatial characteristics, from mouse movements for analysis, and calculated statistical characteristics (mean, standard deviation, etc.) of the data, including temporal characteristics (e.g., velocity, acceleration, movement duration), spatial characteristics (e.g., distance traveled, curvature, path intersection), and stimulus interaction characteristics (e.g., number of clicks, click duration). These preprocessing methods help interpret and analyze the data, and provide a basis for capturing detailed behavioral patterns of mouse movements. 
 
 ### Model Selection
 
