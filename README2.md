@@ -20,10 +20,6 @@ Previous research has attempted to identify individuals based on their mouse usa
 
 ## Methodology
 
-### Dataset Collection
-
-We aim to collect 5 to 10 minutes of action recordings from 5 participants. The dataset will be split into frames and recorded every 0.1 seconds with corresponding mouse events. For better convergence and higher performance of our model, we will use MacBook Pro/Air for data collection, which has a uniform device (Trackpad) that records the mouse events.
-
 ### Data Preprocessing Method Implemented
 
 - **Feature Engineering:** Extracting additional insights like scroll patterns, click patterns, idle times, or mouse velocity.
@@ -34,7 +30,6 @@ We aim to collect 5 to 10 minutes of action recordings from 5 participants. The 
 - **Coordinate Regularization:** Adjusting the x, y coordinates based on individual screen sizes.
 - **Time Slot Formation:** Segmenting continuous event streams into fixed timeslots (about 0.1 sec) for a more structured time series.
 - **Feature Engineering:** Extracting additional insights like scroll patterns, click patterns, idle times, or mouse velocity.
-
 
 
 ### ML Algorithms/Models Implemented
@@ -56,14 +51,23 @@ In our project, we implemented both supervised and unsupervised learning methods
 - **CS 7641:** Unsupervised and Supervised Learning focusing on machine learning approaches for plain data.
 - **CS 7643:** Deep learning models and algorithms, including time-series analysis.
 
-## Expected Results and Discussion
+## Results and Discussion
+
+- **Visualizations:**
+  - Supervised Learning Method: LightGBM
+  ![Feature Overview](lightgbm.png)
+
+  - Unsupervised Learning Method: K-means
+  ![Feature Overview](kmeans_PCA.png)
+  ![Feature Overview](kmeans_tsne.png)
 
 - **Quantitative Metrics:**
-  - Accuracy, precision, recall, and F1-score for evaluating classification performance.
-- **Project Goals:**
   - Ensure high privacy standards while maintaining accurate user activity detection.
-- **Expected Outcomes:**
+- **Analysis of :**
   - A model capable of distinguishing user activity with high accuracy while preserving privacy through non-invasive data collection methods.
+- **Next Steps:**
+  - A model capable of distinguishing user activity with high accuracy while preserving privacy through non-invasive data collection methods.
+
 
 ## Project Timeline
 
