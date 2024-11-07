@@ -27,23 +27,21 @@ Previous research has attempted to identify individuals based on their mouse usa
 **Mouse Movement-Inferred Feature Overview:**
 ![Feature Overview](feature_processing.png)
 
-- **Coordinate Regularization:** Adjusting the x, y coordinates based on individual screen sizes.
-- **Time Slot Formation:** Segmenting continuous event streams into fixed timeslots (about 0.1 sec) for a more structured time series.
-- **Feature Engineering:** Extracting additional insights like scroll patterns, click patterns, idle times, or mouse velocity.
+- **Dimensionality Reduction (PCA and t-SNE):** 
+PCA: Reduced high-dimensional data while retaining key features, minimizing overfitting and enhancing computational efficiency.
+t-SNE: Used for 2D visualization to reveal data structure and cluster distribution, helping to better understand relationships between classes.
+- **Windowing:** Divided the data into windows of varying sizes and intervals to capture both short-term and long-term patterns, enabling effective analysis of time-sequence data.
+- **Oversampling:** Addressed class imbalance by duplicating minority class samples. RandomOverSampler was used to balance class distribution, allowing the model to learn each class more effectively.
 
 
 ### ML Algorithms/Models Implemented
 
 In our project, we implemented both supervised and unsupervised learning methods for user behavior detection based on mouse movement data. For supervised learning, we trained the data using the LightGBM model, which has high prediction performance and efficient learning and inference due to the lightness of the model. The model performed with an Accuracy of 0.878 and an F1 score of 0.877. For unsupervised learning, we used K-Means clustering to identify hidden patterns and groups in the data. To do this, we used PCA and t-SNE as dimensionality reduction techniques to visualize the characteristics of the data and increase the performance of the clustering. 
 
-1. **Time-Series Classification Models:**
-   - Long Short-Term Memory (LSTM)
-   - Temporal Convolutional Networks (TCNs)
-2. **Window-Based Algorithms:**
-   - Boosting or tree-based algorithms on time-series windows
-3. **Unsupervised Approach:**
-   - Clustering after embedding extraction with some time-series extraction model.
-   - Clustering with pure mouse dynamics-based features.
+1. **LightGBM:**
+   - First, in the supervised learning approach, we employed the Gradient Boosting algorithm, which is a balanced model in terms of speed and performance. This model is particularly effective for handling large-scale and high-dimensional data due to its Leaf-wise Tree Growth splitting method.
+2. **K-means:**
+   - For the unsupervised learning approach, we applied K-means clustering after reducing dimensionality using PCA and t-SNE. The goal of using PCA and t-SNE was to reduce the complexity of the high-dimensional data and to mitigate potential overfitting in the model.
 
 
 ### Relevant Courses and Methods
@@ -61,12 +59,14 @@ In our project, we implemented both supervised and unsupervised learning methods
   ![Feature Overview](kmeans_PCA.png)
   ![Feature Overview](kmeans_tsne.png)
 
+  In our project, we used a variety of visualizations to analyze the mouse movement data. We leveraged PCA and t-SNE to reduce the dimensionality so that we could visually interpret the high-dimensional data, and visualized the K-Means clustering results to more clearly see the boundaries of the clusters. The visualization of the actual labels versus the clustered results helped us understand if the model was detecting patterns in the data well. We also visualized the confusion matrix, which represents the performance of the LightGBM model, to check the prediction accuracy for each class.
+
 - **Quantitative Metrics:**
-  - Ensure high privacy standards while maintaining accurate user activity detection.
-- **Analysis of :**
-  - A model capable of distinguishing user activity with high accuracy while preserving privacy through non-invasive data collection methods.
+  - LightGBM, used as a supervised learning model, achieved an Accuracy of 0.878 and an F1 score of 0.877, which shows that the model can predict different mouse movement patterns with high accuracy. By visually examining the prediction performance between each class through the confusion matrix, we were able to better understand the strengths and weaknesses of the model.
+- **Analysis of LightGMB:**
+  - The LightGBM model used in the project was chosen because it is lightweight, efficient, and has excellent characteristics in terms of learning speed and performance. In unsupervised learning, we applied K-Means clustering and used dimensionality reduction techniques PCA and t-SNE to clearly visualize and analyze the characteristics of the data to better identify potential clusters and behavioral patterns in the data. However, in the unsupervised Learning plot, neither PCA nor t-SNE could effectively separate the actual labels, indicating that these methods were not able to distinguish between classes without supervision.
 - **Next Steps:**
-  - A model capable of distinguishing user activity with high accuracy while preserving privacy through non-invasive data collection methods.
+  - The next step involves trying more different algorithms to improve the performance of the model. To do this, we plan to further utilize the HistGradientBoostingClassifier, RandomForestClassifier, Support Vector Classifier (SVC), LogisticRegression, Polynomial Regression (PolynomialFeatures + LogisticRegression), and K-nearest neighbors (KNeighborsClassifier) models. We will also increase the number of classifications and windows to increase the diversity of the data, so that the model can be trained using richer data to increase the generalization performance of the model and effectively detect more complex user behavior patterns. 
 
 
 ## Project Timeline
