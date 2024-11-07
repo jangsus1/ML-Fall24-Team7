@@ -61,7 +61,7 @@ Below is the Gantt chart outlining each group member’s responsibilities for th
 
 [Gantt Chart](https://docs.google.com/spreadsheets/d/14TtwuTkYRx8cqvmaVrm9Yi3lG_yQL1HBeeJYwnyOWzk/edit?usp=sharing)
 
-![Gantt Chart](gantt.png)
+![Gantt Chart](../assets/gantt_proposal.png)
 
 ## Team Contributions
 

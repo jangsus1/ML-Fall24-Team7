@@ -28,7 +28,7 @@ Data was collected from 5 team members who each performed mouse events for 10 mi
 - **Feature Engineering:** Extracting additional insights like scroll patterns, click patterns, idle times, or mouse velocity.
 
 **Mouse Movement-Inferred Feature Overview:**
-![Feature Overview](feature_processing.png)
+![Feature Overview](../assets/feature_processing.png)
 
 - **Dimensionality Reduction (PCA and t-SNE):** 
 PCA: Reduced high-dimensional data while retaining key features, minimizing overfitting and enhancing computational efficiency.
@@ -44,7 +44,7 @@ In our project, we implemented both supervised and unsupervised learning methods
 1. **LightGBM:**
    - First, in the supervised learning approach, we employed the Gradient Boosting algorithm, which is a balanced model in terms of speed and performance. This model is particularly effective for handling large-scale and high-dimensional data due to its Leaf-wise Tree Growth splitting method.
 2. **K-means:**
-   - For the unsupervised learning approach, we applied K-means clustering after reducing dimensionality using PCA and t-SNE. The goal of using PCA and t-SNE was to reduce the complexity of the high-dimensional data and to mitigate potential overfitting in the model.
+   - For the unsupervised learning approach, we applied K-means clustering after reducing dimensionality using PCA and t-SNE. The goal of using PCA and t-SNE was to reduce the complexity of the high-dimensional data and to mitigate potential overfitting in the model. Extracted raw features are used as the target data for the clustering.
 
 
 ### Relevant Courses and Methods
@@ -56,11 +56,11 @@ In our project, we implemented both supervised and unsupervised learning methods
 
 - **Visualizations:**
   - Supervised Learning Method: LightGBM
-  ![Feature Overview](lightgbm.png)
+  ![Feature Overview](../assets/lightgbm.png)
 
   - Unsupervised Learning Method: K-means
-  ![Feature Overview](kmeans_PCA.png)
-  ![Feature Overview](kmeans_tsne.png)
+  ![Feature Overview](../assets/kmeans_PCA.png)
+  ![Feature Overview](../assets/kmeans_tsne.png)
 
   In our project, we used a variety of visualizations to analyze the mouse movement data. We leveraged PCA and t-SNE to reduce the dimensionality so that we could visually interpret the high-dimensional data, and visualized the K-Means clustering results to more clearly see the boundaries of the clusters. The visualization of the actual labels versus the clustered results helped us understand if the model was detecting patterns in the data well. We also visualized the confusion matrix, which represents the performance of the LightGBM model, to check the prediction accuracy for each class.
 
@@ -78,7 +78,7 @@ Below is the Gantt chart outlining each group member’s responsibilities for th
 
 [Gantt Chart](https://docs.google.com/spreadsheets/d/14TtwuTkYRx8cqvmaVrm9Yi3lG_yQL1HBeeJYwnyOWzk/edit?usp=sharing)
 
-![Gantt Chart](gantt.png)
+![Gantt Chart](../assets/gantt_midterm.png)
 
 ## Team Contributions
 
