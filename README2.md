@@ -33,7 +33,7 @@ We aim to collect 5 to 10 minutes of action recordings from 5 participants. The 
 ### Data Preprocessing Method Implemented
 
 **Mouse Movement-Inferred Feature Overview:**
-![Feature Overview](https://drive.google.com/file/d/1e_4nSjyWNF1JgcJ_Ya97OE7q7AgIC-7o/view?usp=drive_link)
+![Feature Overview](feature_processing.png)
 
 Based on the above, we implemented a data preprocessing approach to extract various characteristics of mouse movement data. In the data preprocessing process, we extracted stimulus interaction characteristics, including temporal and spatial characteristics, from mouse movements for analysis, and calculated statistical characteristics (mean, standard deviation, etc.) of the data, including temporal characteristics (e.g., velocity, acceleration, movement duration), spatial characteristics (e.g., distance traveled, curvature, path intersection), and stimulus interaction characteristics (e.g., number of clicks, click duration). These preprocessing methods help interpret and analyze the data, and provide a basis for capturing detailed behavioral patterns of mouse movements. 
 
