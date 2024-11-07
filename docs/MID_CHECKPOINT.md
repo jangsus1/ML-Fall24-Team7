@@ -97,8 +97,3 @@ Each group member's specific contributions to the project proposal are outlined 
 1. E. Kuric, P. Demcak, M. Krajcovic, and P. Nemcek, “Is mouse dynamics information credible for user behavior research? An empirical investigation,” *Computer Standards & Interfaces*, vol. 90, p. 103849, 2024.
 2. E. Y. Fu et al., “Your mouse reveals your next activity: towards predicting user intention from mouse interaction,” in *2017 IEEE 41st Annual Computer Software and Applications Conference (COMPSAC)*, vol. 1, pp. 869–874, 2017.
 3. J. J. Matthiesen and U. Brefeld, “Assessing user behavior by mouse movements,” in *HCI International 2020-Posters*, pp. 68–75, 2020.
-
-
-Implemented data preprocessing methods, including coordinate regularization, time slot formation, and dataset formation.
-Conducted literature review and contributed to data processing and feature engineering, focusing on feature extraction and integration.
-
