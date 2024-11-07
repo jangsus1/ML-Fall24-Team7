@@ -39,6 +39,8 @@ We aim to collect 5 to 10 minutes of action recordings from 5 participants. The 
 
 ### ML Algorithms/Models Implemented
 
+In our project, we implemented both supervised and unsupervised learning methods for user behavior detection based on mouse movement data. For supervised learning, we trained the data using the LightGBM model, which has high prediction performance and efficient learning and inference due to the lightness of the model. The model performed with an Accuracy of 0.878 and an F1 score of 0.877. For unsupervised learning, we used K-Means clustering to identify hidden patterns and groups in the data. To do this, we used PCA and t-SNE as dimensionality reduction techniques to visualize the characteristics of the data and increase the performance of the clustering. 
+
 1. **Time-Series Classification Models:**
    - Long Short-Term Memory (LSTM)
    - Temporal Convolutional Networks (TCNs)
