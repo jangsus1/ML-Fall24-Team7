@@ -105,6 +105,62 @@ def prepare_data(window_size=50, window_interval=5, resample=True, split=0.8):
     # print(f'X_test shape: {X_test.shape}')
     return X_train, X_test, y_train, y_test, scaler
 
+class AttentionClassifier(nn.Module):
+    def __init__(self, input_size, hidden_size, num_classes, num_heads):
+        super(AttentionClassifier, self).__init__()
+        self.hidden_size = hidden_size
+        self.num_heads = num_heads
+
+        # Linear layers to project inputs to queries, keys, and values
+        self.query_proj = nn.Linear(input_size, hidden_size)
+        self.key_proj = nn.Linear(input_size, hidden_size)
+        self.value_proj = nn.Linear(input_size, hidden_size)
+
+        # Batch normalization for queries, keys, and values
+        self.query_bn = nn.BatchNorm1d(hidden_size)
+        self.key_bn = nn.BatchNorm1d(hidden_size)
+        self.value_bn = nn.BatchNorm1d(hidden_size)
+
+        # Multi-head attention module
+        self.attention = nn.MultiheadAttention(
+            embed_dim=hidden_size,
+            num_heads=num_heads,
+            batch_first=True
+        )
+
+        # Classifier
+        self.fc = nn.Linear(hidden_size, num_classes)
+
+    def forward(self, x):
+        # x shape: (batch_size, seq_length, input_size)
+        batch_size, seq_length, _ = x.size()
+
+        # Project inputs to queries, keys, and values
+        queries = self.query_proj(x)  # (batch_size, seq_length, hidden_size)
+        keys = self.key_proj(x)
+        values = self.value_proj(x)
+
+        # Reshape for BatchNorm (requires [batch*seq, hidden_size])
+        queries = queries.view(-1, self.hidden_size)
+        keys = keys.view(-1, self.hidden_size)
+        values = values.view(-1, self.hidden_size)
+
+        # Apply Batch Normalization
+        queries = self.query_bn(queries).view(batch_size, seq_length, self.hidden_size)
+        keys = self.key_bn(keys).view(batch_size, seq_length, self.hidden_size)
+        values = self.value_bn(values).view(batch_size, seq_length, self.hidden_size)
+
+        # Apply attention
+        attn_output, _ = self.attention(queries, keys, values)  # (batch_size, seq_length, hidden_size)
+
+        # Aggregate the attention output
+        attn_output = attn_output.mean(dim=1)  # (batch_size, hidden_size)
+
+        # Pass through classifier
+        out = self.fc(attn_output)  # (batch_size, num_classes)
+        return out
+    
+
 
 # Prepare the data
 window_interval = 2
@@ -115,6 +171,8 @@ for window_size in [300, 100, 50]:
 
     X_train = X_train.reshape(X_train.shape[0], window_size, -1)
     X_test = X_test.reshape(X_test.shape[0], window_size, -1)
+    
+    input_size = X_train.shape[2]
 
     X_train_tensor = torch.tensor(X_train, dtype=torch.float32)
     X_test_tensor = torch.tensor(X_test, dtype=torch.float32)
@@ -130,26 +188,13 @@ for window_size in [300, 100, 50]:
     test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
 
     # Define the LSTM model
-    class LSTMClassifier(nn.Module):
-        def __init__(self, input_size, hidden_size, num_classes):
-            super(LSTMClassifier, self).__init__()
-            self.lstm = nn.LSTM(input_size, hidden_size, batch_first=True)
-            self.fc1 = nn.Linear(hidden_size, 64)
-            self.fc2 = nn.Linear(64, num_classes)
-
-        def forward(self, x):
-            _, (hn, _) = self.lstm(x)  # hn is the last hidden state
-            out = hn[-1]  # Take the last layer's output
-            # relu activation
-            out = self.fc1(torch.relu(out))
-            out = self.fc2(torch.relu(out))
-            return out
-
+    
     # Initialize the model, loss function, and optimizer
     input_size = X_train.shape[2]
     hidden_size = 128
+    
     num_classes = len(np.unique(y_train))
-    model = LSTMClassifier(input_size, hidden_size, num_classes)
+    model = AttentionClassifier(input_size, hidden_size, num_classes, 4)
 
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=0.001)
