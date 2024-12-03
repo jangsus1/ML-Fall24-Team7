@@ -13,6 +13,7 @@ This project aims to classify a user's current activity (e.g., web browsing, cha
 
 - Develop a model capable of distinguishing user activity with high accuracy.
 - Preserve user privacy by using non-invasive data collection methods.
+- Enable real-time inference so that current action can be predicted without any delays.
 
 ## Literature Review
 
@@ -33,18 +34,19 @@ Data was collected from 5 team members who each performed mouse events for 10 mi
 - **Dimensionality Reduction (PCA and t-SNE):** 
 PCA: Reduced high-dimensional data while retaining key features, minimizing overfitting and enhancing computational efficiency.
 t-SNE: Used for 2D visualization to reveal data structure and cluster distribution, helping to better understand relationships between classes.
-- **Windowing:** Divided the data into windows of varying sizes and intervals to capture both short-term and long-term patterns, enabling effective analysis of time-sequence data.
+- **Windowing:** Divided the data into windows of varying sizes and intervals to capture both short-term and long-term patterns, enabling effective analysis of time-sequence data. We also measured the effect of changing the window sizes.
 - **Oversampling:** Addressed class imbalance by duplicating minority class samples. RandomOverSampler was used to balance class distribution, allowing the model to learn each class more effectively.
+- **Scaling** As each feature would have different distribution in their own space, we normalize each feature using the Standard scaler. We've used the code from the scikit-learn library.
 
 
 ### ML Algorithms/Models Implemented
 
-In our project, we implemented both supervised and unsupervised learning methods for user behavior detection based on mouse movement data. We split the training and testing data into approximately 8:2 ratio as the dataset became larger. For supervised learning, we trained the data using the LightGBM model, which has high prediction performance and efficient learning and inference due to the lightness of the model. The model performed with an Accuracy of 0.878 and an F1 score of 0.877. For unsupervised learning, we used K-Means clustering to identify hidden patterns and groups in the data. To do this, we used PCA and t-SNE as dimensionality reduction techniques to visualize the characteristics of the data and increase the performance of the clustering. 
+#### Supervised Learning
+In our project, we implemented both supervised and unsupervised learning methods for user behavior detection based on mouse movement data. We split the training and testing data into approximately 8:2 ratio as the dataset became larger. For supervised learning, we trained 3 ML models (**LightGBM, Random Forest, KNN**), and also the **LSTM** model. We also trained the models with varying window size of 50, 100, and 300 to examine the effect of window size in terms of accuracy. Alongside accuracy we also analyzed the inference time among the models. 
+ 
 
-1. **LightGBM:**
-   - First, in the supervised learning approach, we employed the Gradient Boosting algorithm, which is a balanced model in terms of speed and performance. This model is particularly effective for handling large-scale and high-dimensional data due to its Leaf-wise Tree Growth splitting method.
-2. **K-means:**
-   - For the unsupervised learning approach, we applied K-means clustering after reducing dimensionality using PCA and t-SNE. The goal of using PCA and t-SNE was to reduce the complexity of the high-dimensional data and to mitigate potential overfitting in the model. Extracted raw features are used as the target data for the clustering.
+#### Unsupervised Learning
+For unsupervised learning, we used **K-Means** clustering to identify hidden patterns and groups in the data. To do this, we used PCA and t-SNE as dimensionality reduction techniques to visualize the characteristics of the data and increase the performance of the clustering. The raw features extracted from the preprocessing algorithm are used as the target data for the clustering.
 
 
 ### Relevant Courses and Methods
@@ -55,22 +57,50 @@ In our project, we implemented both supervised and unsupervised learning methods
 ## Results and Discussion
 
 - **Visualizations:**
-  - Supervised Learning Method: LightGBM
-  ![Feature Overview](../assets/lightgbm.png)
+  In our project, we used a variety of visualizations to analyze the mouse movement data. We leveraged PCA and t-SNE to reduce the dimensionality so that we could visually interpret the high-dimensional data, and visualized the K-Means clustering results to more clearly see the boundaries of the clusters. The visualization of the actual labels versus the clustered results helped us understand if the model was detecting patterns in the data well. We also visualized the confusion matrix, which represents the performance of the LightGBM model, to check the prediction accuracy for each class.  
 
-  - Unsupervised Learning Method: K-means
-  ![Feature Overview](../assets/kmeans_PCA.png)
-  ![Feature Overview](../assets/kmeans_tsne.png)
 
-  In our project, we used a variety of visualizations to analyze the mouse movement data. We leveraged PCA and t-SNE to reduce the dimensionality so that we could visually interpret the high-dimensional data, and visualized the K-Means clustering results to more clearly see the boundaries of the clusters. The visualization of the actual labels versus the clustered results helped us understand if the model was detecting patterns in the data well. We also visualized the confusion matrix, which represents the performance of the LightGBM model, to check the prediction accuracy for each class.
+  - Supervised Learning Method: LightGBM with 30 seconds window size  
+  ![CM](../assets/lightgbm_5.png)
 
-- **Quantitative Metrics:**
-  - LightGBM, used as a supervised learning model, achieved an Accuracy of 0.878 and an F1 score of 0.877, which shows that the model can predict different mouse movement patterns with high accuracy. According to the confusion matrix our model correctly classified web browsing 95%, finding mines/chess 91%, and watching youtube 72% accordingly. For the model,classifying youtube was most challenging as it misclassified youtube as web browsing 14% and finding mines/chess 14%. This struggle might be due to instances where moving, scrolling and clicking while searching for different videos or skipping video time potentially share resemblences to those of other classes.
-- **Analysis of LightGBM:**
-  - The LightGBM model used in the project was chosen because it is lightweight, efficient, and has excellent characteristics in terms of learning speed and performance. In unsupervised learning, we applied K-Means clustering and used dimensionality reduction techniques PCA and t-SNE to clearly visualize and analyze the characteristics of the data to better identify potential clusters and behavioral patterns in the data. However, in the unsupervised Learning plot, neither PCA nor t-SNE could effectively separate the actual labels. The overlapping regions in PCA indicates that data from different classes do not have clear and linear separations. t-SNE performance was no different from that of PCA indicating that K-Means with these methods were not able to distinguish between classes without supervision.
-- **Next Steps:**
-  - The next step involves trying more different algorithms to improve the performance of the model. To do this, we plan to further utilize the HistGradientBoostingClassifier, RandomForestClassifier, Support Vector Classifier (SVC), LogisticRegression, Polynomial Regression (PolynomialFeatures + LogisticRegression), and K-nearest neighbors (KNeighborsClassifier) models. We will also increase the number of classifications and windows to increase the diversity of the data, so that the model can be trained using richer data to increase the generalization performance of the model and effectively detect more complex user behavior patterns. Although we only evaluated for 3 activities, we plan to show evaluations for other mouse tracking acitivities as well. Lastly, we will be preparing for live classification demo for the final report.
+  - Unsupervised Learning Method: K-means  
+  ![PCA](../assets/kmeans_PCA.png)
+  ![TSNE](../assets/kmeans_tsne.png)
 
+  
+
+- **Quantitative Analysis:**  
+  The following table shows the test accuracy for each model and window size. We derive insights from the table's results.
+
+  | Models \ Window Size | 300 | 100 | 50 |
+  |----------|----------|----------|----------|
+  |   Gradient Boosting |  **0.85**  |   0.75  |   0.69  | 
+  |   Random Forest     |   0.71  |   0.67  |   0.64  | 
+  |   KNN               |   0.22  |   0.29  |   0.31  |
+  |   LSTM              |   **0.85**  |   **0.77**  |   **0.75**  | 
+
+  1. LSTM performs better than other ML models because of strong non-linearity which extracts complex patterns from the diverse mouse events.
+  2. Gradient Boosting performs almost the same when the feature size is large (window size is large), indicating that large window size lets lighter ML models to learn complex patterns.
+  3. Random forest performs slightly worse than boosting, indicating that boosting algorithms (regression trees) are better at finding out non-linear patterns than combination of pure trees. 
+  4. Knn performs so bad that it's almost same as random guess. Strong non-linearity is required to solve this classification task.
+
+- **Comparison between LSTM and Gradient Boosting:**
+  The LightGBM model used in the project was chosen because it is lightweight, efficient, and has excellent characteristics in terms of learning speed and performance. This was represented on the highest accuracy in 300-window. In terms of LSTM, it is also known to be lightweight but more effective on capturing the sequence information from the training data. This is represented as continuously high accuracy in 100 and 50-sized windows. Therefore, we can suggest applying different models based on the corresponding usages. For example, if fast inference is required and the window size should be small (shorter observing time), then LSTM with lower window size would be the best choice. However, only for the higher accuracy, I believe Gradient boosting model can perform well due to fast training and inference on the CPU.
+
+- **Analysis of the Confusion Matrix:**
+  As the confusion matrix shows, web browsing and game is the easiest task among the 5 categories. However, chatting and reading papers are showns as very difficult task. This is due to the motion overlap among the tasks. For example, the motion of reading can be included or be seen as web browsing, and chatting can be interpreted as youtube watching as it rarely includes mouse movement. Therefore, adding new features that can assist differentiating these actions would further enhance the model's classification performance.
+
+- **Inference Time Analysis:**  
+  For the fair comparison, we analyzed how much time the model costs to inference single data sample. We have tested 100 times total and averaged the time cost to minimize external impacts.
+  
+  | Models | Time Cost(sec) |
+  |----------|----------|
+  |   Gradient Boosting     |  0.02  |
+  |   Random Forest         |   0.017  |
+  |   LSTM (CPU) |   **0.003**  |
+    |   LSTM (GPU) |   0.005  |
+  
+  The inference time for Gradient Boosting algorithm was the slowest as it follows the large tree which is built during the training process. To learn the complex pattern of the data, the tree had to be large, leading to slower inference time. On the other hand, LSTM with CPU was the fastest. We can further improve the LSTM model's inference speed with the following approaches. First, mini-batching can be properly utilized to make real-time inference as semi-real-time while enhancing the speed and lowering the delay. Also, GPU with higher performance can be used to further increase the speed, but the memory copy overhead should be properly addressed to make the real-time inference faster than the CPU.
 
 ## Project Timeline
 
@@ -86,11 +116,11 @@ Each group member's specific contributions to the project proposal are outlined 
 
 | Name             | Proposal Contributions                                                                                                                 |
 |------------------|----------------------------------------------------------------------------------------------------------------------------------------|
-| **Ji Min Park**  | Set up evaluation metrics (accuracy, F1-score), visualizations, and analysis of model performance and feature importance.              |
+| **Ji Min Park**  | Set up evaluation metrics (accuracy, F1-score, time cost), visualizations, and analysis of model performance and feature importance.              |
 | **Hyunju Ji**    | Implemented feature engineering, including velocity, acceleration, scroll patterns, and other mouse dynamics features.                 |
 | **Woohyun Noh**  | Conducted literature review and contributed to data processing and feature engineering, focusing on feature extraction and integration.|
-| **Jungwoo Park** | Implemented data preprocessing methods(Oversampling, PCA, t-SNE).                                                                      |
-| **Minsuk Chang** | Developed and trained machine learning models (e.g., LightGBM, K-means), and experimented with different model configurations.         |
+| **Jungwoo Park** | Implemented data preprocessing methods(Oversampling, Scaling, Feature Extraction PCA t-SNE).                                                                      |
+| **Minsuk Chang** | Developed and trained ML/DL models (e.g., LightGBM, LSTM, K-means), and experimented with different model configurations.         |
 
 ## References
 
