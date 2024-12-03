@@ -57,15 +57,20 @@ For unsupervised learning, we used **K-Means** clustering to identify hidden pat
 ## Results and Discussion
 
 - **Visualizations:**
-  In our project, we used a variety of visualizations to analyze the mouse movement data. We leveraged PCA and t-SNE to reduce the dimensionality so that we could visually interpret the high-dimensional data, and visualized the K-Means clustering results to more clearly see the boundaries of the clusters. The visualization of the actual labels versus the clustered results helped us understand if the model was detecting patterns in the data well. We also visualized the confusion matrix, which represents the performance of the LightGBM model, to check the prediction accuracy for each class.  
-
-
-  - Supervised Learning Method: LightGBM with 30 seconds window size  
-  ![CM](../assets/lightgbm_5.png)
 
   - Unsupervised Learning Method: K-means  
-  ![PCA](../assets/kmeans_PCA.png)
-  ![TSNE](../assets/kmeans_tsne.png)
+  In our project, we used a variety of visualizations to analyze the mouse movement data. We leveraged PCA and t-SNE to reduce the dimensionality so that we could visually interpret the high-dimensional data, and visualized the K-Means clustering results to more clearly see the boundaries of the clusters. The visualization of the actual labels versus the clustered results helped us understand if the model was detecting patterns in the data well.  
+    ![PCA](../assets/kmeans_PCA.png)
+    ![TSNE](../assets/kmeans_tsne.png)
+
+  - Supervised Learning Method (Embeddings): LSTM with 30 seconds (300 frames) window size  
+  We visualized the embedding of the trained LSTM model to observe whether the classification worked well in the latent vector space. As the image implys, the classes are well-clustered even though a linear dimensionality reduction method (PCA) is used.  
+    ![PCA2](../assets/lstm_pca.png)
+
+  - Supervised Learning Method (Confusion Matrix): LightGBM with 30 seconds (300 frames) window size  
+  We also visualized the confusion matrix, which represents the performance of the LightGBM model, to check the prediction accuracy for each class.  
+    ![CM](../assets/lightgbm_5.png)
+
 
   
 
@@ -79,9 +84,9 @@ For unsupervised learning, we used **K-Means** clustering to identify hidden pat
   |   KNN               |   0.22  |   0.29  |   0.31  |
   |   LSTM              |   **0.85**  |   **0.77**  |   **0.75**  | 
 
-  1. LSTM performs better than other ML models because of strong non-linearity which extracts complex patterns from the diverse mouse events.
-  2. Gradient Boosting performs almost the same when the feature size is large (window size is large), indicating that large window size lets lighter ML models to learn complex patterns.
-  3. Random forest performs slightly worse than boosting, indicating that boosting algorithms (regression trees) are better at finding out non-linear patterns than combination of pure trees. 
+  1. LSTM performs better than other ML models because of strong non-linearity which extracts complex patterns from the diverse mouse events. The capability of capturing the time sequence information better than other models allow it to perform better than other models on smaller windows.
+  2. Gradient Boosting performs almost the same when the feature size is large (window size is large), indicating that large window size allows lighter ML models to learn complex patterns. However, the performance slightly drops as the feature size (window length) decreases.
+  3. Random forest performs slightly worse than gradient boosting, indicating that boosting algorithms (regression trees) are better at discovering non-linear patterns than pure combination of decision trees. 
   4. Knn performs so bad that it's almost same as random guess. Strong non-linearity is required to solve this classification task.
 
 - **Comparison between LSTM and Gradient Boosting:**
@@ -108,11 +113,11 @@ Below is the Gantt chart outlining each group member’s responsibilities for th
 
 [Gantt Chart](https://docs.google.com/spreadsheets/d/14TtwuTkYRx8cqvmaVrm9Yi3lG_yQL1HBeeJYwnyOWzk/edit?usp=sharing)
 
-![Gantt Chart](../assets/gantt_midterm.png)
+![Gantt Chart](../assets/gantt_final.png)
 
 ## Team Contributions
 
-Each group member's specific contributions to the project proposal are outlined in the table below.
+Each group member's specific contributions to the project proposal are outlined in the table below. The preparation for mid-term/final reports and presentation are done together during the team meeting.
 
 | Name             | Proposal Contributions                                                                                                                 |
 |------------------|----------------------------------------------------------------------------------------------------------------------------------------|
