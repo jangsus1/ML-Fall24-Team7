@@ -13,6 +13,7 @@ This project aims to classify a user's current activity (e.g., web browsing, cha
 
 - Develop a model capable of distinguishing user activity with high accuracy.
 - Preserve user privacy by using non-invasive data collection methods.
+- Enable real-time inference so that current action can be predicted without any delays.
 
 ## Literature Review
 

@@ -1,9 +1,9 @@
 # Detecting User Actions from Mouse Events
 
 ## Link to Reports
-[Proposal](docs/PROPOSAL.md)
-[Mid-term Report](docs/MID_CHECKPOINT.md)
-[Final Report](docs/FINAL.md)
+[Proposal](docs/PROPOSAL.md)  
+[Mid-term Report](docs/MID_CHECKPOINT.md)  
+[Final Report](docs/FINAL.md)  
 
 
 ## Project Structure
