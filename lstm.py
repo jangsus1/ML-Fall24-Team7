@@ -105,6 +105,21 @@ def prepare_data(window_size=50, window_interval=5, resample=True, split=0.8):
     # print(f'X_test shape: {X_test.shape}')
     return X_train, X_test, y_train, y_test, scaler
 
+# Define the LSTM model
+class LSTMClassifier(nn.Module):
+    def __init__(self, input_size, hidden_size, num_classes):
+        super(LSTMClassifier, self).__init__()
+        self.lstm = nn.LSTM(input_size, hidden_size, batch_first=True)
+        self.fc1 = nn.Linear(hidden_size, 64)
+        self.fc2 = nn.Linear(64, num_classes)
+
+    def forward(self, x):
+        _, (hn, _) = self.lstm(x)  # hn is the last hidden state
+        out = hn[-1]  # Take the last layer's output
+        # relu activation
+        out = self.fc1(torch.relu(out))
+        out = self.fc2(torch.relu(out))
+        return out
 
 # Prepare the data
 window_interval = 2
@@ -128,22 +143,7 @@ for window_size in [300, 100, 50]:
 
     train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
     test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
-
-    # Define the LSTM model
-    class LSTMClassifier(nn.Module):
-        def __init__(self, input_size, hidden_size, num_classes):
-            super(LSTMClassifier, self).__init__()
-            self.lstm = nn.LSTM(input_size, hidden_size, batch_first=True)
-            self.fc1 = nn.Linear(hidden_size, 64)
-            self.fc2 = nn.Linear(64, num_classes)
-
-        def forward(self, x):
-            _, (hn, _) = self.lstm(x)  # hn is the last hidden state
-            out = hn[-1]  # Take the last layer's output
-            # relu activation
-            out = self.fc1(torch.relu(out))
-            out = self.fc2(torch.relu(out))
-            return out
+    
 
     # Initialize the model, loss function, and optimizer
     input_size = X_train.shape[2]
