@@ -28,8 +28,8 @@ Data was collected from 5 team members who each performed mouse events for 10 mi
 
 - **Feature Engineering:** Extracting additional insights like scroll patterns, click patterns, idle times, or mouse velocity.
 
-**Mouse Movement-Inferred Feature Overview:**
-![Feature Overview](../assets/feature_processing.png)
+  **Mouse Movement-Inferred Feature Overview:**
+  ![Feature Overview](../assets/feature_processing.png)
 
 - **Dimensionality Reduction (PCA and t-SNE):** 
 PCA: Reduced high-dimensional data while retaining key features, minimizing overfitting and enhancing computational efficiency.
@@ -37,6 +37,7 @@ t-SNE: Used for 2D visualization to reveal data structure and cluster distributi
 - **Windowing:** Divided the data into windows of varying sizes and intervals to capture both short-term and long-term patterns, enabling effective analysis of time-sequence data. We also measured the effect of changing the window sizes.
 - **Oversampling:** Addressed class imbalance by duplicating minority class samples. RandomOverSampler was used to balance class distribution, allowing the model to learn each class more effectively.
 - **Scaling** As each feature would have different distribution in their own space, we normalize each feature using the Standard scaler. We've used the code from the scikit-learn library.
+- **Null Frame Filling**: As idle mouse events can occur, we fill in the empty frames with null frames so that ML/DL models acknlowledge the empty frames as idle mouse events.
 
 
 ### ML Algorithms/Models Implemented
