@@ -68,7 +68,7 @@ For unsupervised learning, we used **K-Means** clustering to identify hidden pat
     ![PCA2](../assets/lstm_pca.png)
 
   - Supervised Learning Method (Confusion Matrix): LightGBM with 30 seconds (300 frames) window size  
-  We also visualized the confusion matrix, which represents the performance of the LightGBM model, to check the prediction accuracy for each class.  
+  We also visualized the confusion matrix, which represents the performance of the LightGBM model, to check the prediction accuracy for each class. The result looks promising for some of the classes like "web-browsing" and "playing games", which reaches over 94% of accuracy. However, some classes like "chatting" and "reading" has relatively poor classification accuracy below 60%. We might be able to handle this problem through class merging like "playing games" or add mode traing data.  
     ![CM](../assets/lightgbm_5.png)
 
 
@@ -105,7 +105,11 @@ For unsupervised learning, we used **K-Means** clustering to identify hidden pat
   |   LSTM (CPU) |   **0.003**  |
     |   LSTM (GPU) |   0.005  |
   
-  The inference time for Gradient Boosting algorithm was the slowest as it follows the large tree which is built during the training process. To learn the complex pattern of the data, the tree had to be large, leading to slower inference time. On the other hand, LSTM with CPU was the fastest. We can further improve the LSTM model's inference speed with the following approaches. First, mini-batching can be properly utilized to make real-time inference as semi-real-time while enhancing the speed and lowering the delay. Also, GPU with higher performance can be used to further increase the speed, but the memory copy overhead should be properly addressed to make the real-time inference faster than the CPU.
+  The inference time for Gradient Boosting algorithm was the slowest as it follows the large tree which is built during the training process. To learn the complex pattern of the data, the tree had to be large, leading to slower inference time. On the other hand, LSTM with CPU was the fastest. We can further improve the LSTM model's inference speed with the following approaches. First, mini-batching can be properly utilized to make real-time inference as semi-real-time while enhancing the speed and lowering the delay. Also, GPU with higher performance can be used to further increase the speed, but the memory copy overhead should be properly addressed to make the real-time inference faster than the CPU.  
+  
+- **Next Steps:**  
+  As the extension of this project to have higher accuracy and performance, we would have to focus on two directions. First, large amount of clean data should be collected. Currently we only have 5 participants' data of less than 1 hour each. This strongly limits the model's size and architecture, forcing us to use ML models instead of state-of-the-art deep learning models. Secondly, better model and hyperparameters can be selected. Due to the limited time, we only have tested couple of ML/DL models and architectures with fixed hyperparameters. If combined with larger datasets, we would be able to train complex but more powerful models like Attention or CNN-based models. Overall, larger datasets and model capacity with proper hyperparameters would further enhance the classification performance.
+  
 
 ## Project Timeline
 
